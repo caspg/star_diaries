@@ -6,6 +6,7 @@
     "watch": "webpack --mode development --watch"
   },
   "dependencies": {
+    "bootstrap": "^4.1.0",
     "phoenix": "file:../../phoenix",
     "phoenix_html": "file:../deps/phoenix_html"
   },
@@ -15,8 +16,13 @@
     "babel-preset-env": "^1.6.1",
     "copy-webpack-plugin": "^4.5.0",
     "css-loader": "^0.28.10",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.11.0",
     "mini-css-extract-plugin": "^0.4.0",
+    "node-sass": "^4.8.3",
     "optimize-css-assets-webpack-plugin": "^4.0.0",
+    "sass-loader": "^7.0.1",
     "style-loader": "^0.20.2",
     "uglifyjs-webpack-plugin": "^1.2.4",
     "webpack": "4.4.0",
