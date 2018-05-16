@@ -20,7 +20,12 @@ defmodule StarDiaries.MixProject do
   def application do
     [
       mod: {StarDiaries.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [
+        :logger,
+        :runtime_tools,
+        :ueberauth,
+        :ueberauth_github,
+      ]
     ]
   end
 
@@ -41,7 +46,9 @@ defmodule StarDiaries.MixProject do
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
-      {:cowboy, "~> 1.0"}
+      {:cowboy, "~> 1.0"},
+      {:ueberauth, "~> 0.4"},
+      {:ueberauth_github, "~> 0.7"},
     ]
   end
 
