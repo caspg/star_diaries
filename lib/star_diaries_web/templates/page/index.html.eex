@@ -1,1 +1,6 @@
-<h1>Hello, World!</h1>
+<br>
+<br>
+
+<a class="btn btn-primary" href="<%= Routes.authentication_path(@conn, :request, "github") %>">
+  Github Login
+</a>

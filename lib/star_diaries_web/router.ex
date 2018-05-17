@@ -19,8 +19,12 @@ defmodule StarDiariesWeb.Router do
     get "/", PageController, :index
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", StarDiariesWeb do
-  #   pipe_through :api
-  # end
+  # Ueberauth authentication
+  scope "/auth", StarDiariesWeb do
+    pipe_through :browser # Use the default browser stack
+
+    # request action is handled by Überauth
+    get "/:provider", AuthenticationController, :request
+    get "/:provider/callback", AuthenticationController, :callback
+  end
 end
