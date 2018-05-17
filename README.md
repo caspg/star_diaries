@@ -1,5 +1,15 @@
 # StarDiaries
 
+## ENV Variables
+
+During development:
+
+  * run `cp .env.example .env`
+  * update `.env` with correct values
+  * run `source .env && mix phx.server`
+
+## Setting up
+
 To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`
