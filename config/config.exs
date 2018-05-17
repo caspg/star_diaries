@@ -26,6 +26,12 @@ config :logger, :console,
 config :phoenix, :json_library, Jason
 config :ecto, :json_library, Jason
 
+# ueberauth_github is using oauth2 and it requires to specify serializer
+config :oauth2,
+  serializers: %{
+    "application/json" => Jason,
+  }
+
 config :ueberauth, Ueberauth,
   providers: [
     github: {Ueberauth.Strategy.Github, [default_scope: ""]} #  read-only access to public information
