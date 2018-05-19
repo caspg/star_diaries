@@ -1,4 +1,4 @@
-defmodule StarDiariesWeb.AuthenticationController do
+defmodule StarDiariesWeb.AuthController do
   @moduledoc """
   Handles the Überauth authentication.
   """

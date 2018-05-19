@@ -24,7 +24,7 @@ defmodule StarDiariesWeb.Router do
     pipe_through :browser # Use the default browser stack
 
     # request action is handled by Überauth
-    get "/:provider", AuthenticationController, :request
-    get "/:provider/callback", AuthenticationController, :callback
+    get "/:provider", AuthController, :request
+    get "/:provider/callback", AuthController, :callback
   end
 end

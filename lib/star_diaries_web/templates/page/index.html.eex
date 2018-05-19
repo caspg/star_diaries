@@ -1,6 +1,6 @@
 <br>
 <br>
 
-<a class="btn btn-primary" href="<%= Routes.authentication_path(@conn, :request, "github") %>">
+<a class="btn btn-primary" href="<%= Routes.auth_path(@conn, :request, "github") %>">
   Github Login
 </a>
