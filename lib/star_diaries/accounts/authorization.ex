@@ -8,6 +8,8 @@ defmodule StarDiaries.Accounts.Authorization do
     field :refresh_token, :string
     field :token, :string
 
+    belongs_to :user, StarDiaries.Accounts.User
+
     timestamps()
   end
 
