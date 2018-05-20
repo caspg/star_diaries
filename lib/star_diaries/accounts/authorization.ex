@@ -14,9 +14,9 @@ defmodule StarDiaries.Accounts.Authorization do
   end
 
   @doc false
-  def changeset(authorization, attrs) do
+  def changeset(authorization, %{} = attrs) do
     authorization
     |> cast(attrs, [:provider, :token, :refresh_token, :expires_at])
-    |> validate_required([:provider, :token, :refresh_token, :expires_at])
+    |> validate_required([:provider, :token])
   end
 end

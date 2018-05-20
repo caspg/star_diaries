@@ -3,6 +3,8 @@ defmodule StarDiariesWeb.AuthController do
   Handles the Überauth authentication.
   """
 
+  alias StarDiaries.Accounts
+
   use StarDiariesWeb, :controller
 
   plug Ueberauth
@@ -14,7 +16,6 @@ defmodule StarDiariesWeb.AuthController do
   end
 
   def callback(%Plug.Conn{assigns: %{ueberauth_auth: auth}} = conn, params) do
-    require IEx
-    IEx.pry
+    Accounts.get_or_insert_user_from_auth(auth)
   end
 end
