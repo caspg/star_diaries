@@ -8,12 +8,6 @@ defmodule StarDiaries.Accounts.Authorizations do
     Repo.get_by(Authorization, clauses)
   end
 
-  def create(attrs) do
-    %Authorization{}
-    |> Authorization.changeset(attrs)
-    |> Repo.insert()
-  end
-
   def create_with_user(user, attrs) do
     user
     |> Ecto.build_assoc(:authorizations)

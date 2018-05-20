@@ -19,12 +19,12 @@ defmodule StarDiaries.Accounts.UsersFromAuthTest do
 
       {:ok, user} = UsersFromAuth.get_or_insert(auth)
       user = Repo.preload(user, :authorizations)
-
-      require IEx
-      IEx.pry
+      authorization = user.authorizations |> List.last()
 
       assert user.email == auth.info.email
       assert user.name == auth.info.name
+      assert authorization.token == auth.credentials.token
+      assert authorization.provider == to_string(auth.provider)
     end
   end
 end
