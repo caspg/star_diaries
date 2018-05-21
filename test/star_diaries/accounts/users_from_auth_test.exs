@@ -1,11 +1,11 @@
 defmodule StarDiaries.Accounts.UsersFromAuthTest do
   use StarDiaries.DataCase
 
-  alias StarDiaries.Accounts.UsersFromAuthNew, as: UsersFromAuth
+  alias StarDiaries.Accounts.UsersFromAuth
   alias StarDiaries.Repo
 
   describe "get_or_insert/1"  do
-    test "create user and authorization" do
+    test "create user and identity" do
       auth = %Ueberauth.Auth{
         uid: "4242",
         provider: :github,

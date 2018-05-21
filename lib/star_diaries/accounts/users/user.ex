@@ -6,7 +6,6 @@ defmodule StarDiaries.Accounts.User do
     field :email, :string
     field :name, :string
 
-    has_many :authorizations, StarDiaries.Accounts.Authorization
     has_many :identities, StarDiaries.Accounts.Identity
 
     timestamps()
