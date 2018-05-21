@@ -1,4 +1,4 @@
-defmodule StarDiaries.Accounts.UsersFromAuthNew do
+defmodule StarDiaries.Accounts.UsersFromAuth do
   @moduledoc """
   The UsersFromAuth context.
   Handles lookup and creation of users and identities during social login.
