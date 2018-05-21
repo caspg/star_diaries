@@ -10,34 +10,43 @@ defmodule StarDiaries.Accounts.UsersFromAuth do
   alias StarDiaries.Repo
 
   def get_or_insert(%Ueberauth.Auth{} = auth) do
-    auth |> AuthInfo.to_struct |> get_or_insert
+    require IEx; IEx.pry
+    auth
+    |> AuthInfo.to_struct
+    |> get_or_insert
   end
 
   def get_or_insert(%AuthInfo{} = auth) do
     case get_authorization(auth) do
-      nil -> register_user_from_auth(auth)
+      nil -> sign_in_user_from_auth(auth)
+      # TODO find user by authorization
     end
   end
 
   defp get_authorization(auth) do
+    # TODO look by uid not token!
     Authorizations.get_by(provider: auth.provider, token: auth.credentials.token)
   end
 
-  defp register_user_from_auth(auth) do
-    {:ok, user} = create_user_and_authorization(auth)
-  end
-
-  defp create_user_and_authorization(auth) do
-    %{
-      provider: provider,
-      credentials: %{token: token},
-      info: %{email: email, name: name}
-    } = auth
-
+  defp sign_in_user_from_auth(auth) do
     Repo.transaction fn ->
-      {:ok, user} = Accounts.create_user(%{email: email, name: name})
-      {:ok, _} = Authorizations.create_with_user(user, %{provider: provider, token: token})
+      user = get_user(auth) || create_user(auth)
+      create_authorization(user, auth)
       user
     end
+  end
+
+  defp get_user(%{info: %{email: email}}) do
+    Accounts.get_user_by(email: email)
+  end
+
+  defp create_user(%{info: %{email: email, name: name}}) do
+    {:ok, user} = Accounts.create_user(email: email, name: name)
+    user
+  end
+
+  defp create_authorization(user, %{provider: provider, credentials: %{token: token}}) do
+    auth_attrs = %{provider: provider, token: token}
+    {:ok, _} = Authorizations.create_with_user(user, auth_attrs)
   end
 end

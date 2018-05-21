@@ -16,6 +16,6 @@ defmodule StarDiariesWeb.AuthController do
   end
 
   def callback(%Plug.Conn{assigns: %{ueberauth_auth: auth}} = conn, params) do
-    Accounts.get_or_insert_user_from_auth(auth)
+    {:ok, user} = Accounts.get_or_insert_user_from_auth(auth)
   end
 end
