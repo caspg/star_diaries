@@ -8,6 +8,7 @@ defmodule StarDiaries.Accounts do
 
   alias StarDiaries.Accounts.User
   alias StarDiaries.Accounts.UsersFromAuth
+  alias StarDiaries.Accounts.UsersFromAuthNew
 
   @doc """
   Returns the list of users.
@@ -108,6 +109,6 @@ defmodule StarDiaries.Accounts do
   end
 
   def get_or_insert_user_from_auth(%Ueberauth.Auth{} = auth) do
-    UsersFromAuth.get_or_insert(auth)
+    UsersFromAuthNew.get_or_insert(auth)
   end
 end

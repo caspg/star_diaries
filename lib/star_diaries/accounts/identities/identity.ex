@@ -17,5 +17,6 @@ defmodule StarDiaries.Accounts.Identity do
     |> cast(attrs, [:provider, :uid, :token, :user_id])
     |> validate_required([:provider, :uid, :token])
     |> assoc_constraint(:user)
+    |> unique_constraint(:provider, name: :identities_provider_uid_index)
   end
 end

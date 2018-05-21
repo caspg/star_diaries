@@ -10,7 +10,6 @@ defmodule StarDiaries.Accounts.UsersFromAuth do
   alias StarDiaries.Repo
 
   def get_or_insert(%Ueberauth.Auth{} = auth) do
-    require IEx; IEx.pry
     auth
     |> AuthInfo.to_struct
     |> get_or_insert
@@ -18,8 +17,12 @@ defmodule StarDiaries.Accounts.UsersFromAuth do
 
   def get_or_insert(%AuthInfo{} = auth) do
     case get_authorization(auth) do
-      nil -> sign_in_user_from_auth(auth)
+      nil ->
+        sign_in_user_from_auth(auth)
+
       # TODO find user by authorization
+      # authorization ->
+      #   get_user_by_authorization
     end
   end
 
