@@ -15,8 +15,8 @@ defmodule StarDiaries.Accounts.Identity do
   def changeset(identity, %{} = attrs) do
     identity
     |> cast(attrs, [:provider, :uid, :token, :user_id])
-    |> validate_required([:provider, :uid, :token])
+    |> validate_required([:provider, :uid, :token, :user_id])
     |> assoc_constraint(:user)
-    |> unique_constraint(:provider, name: :identities_provider_uid_index)
+    |> unique_constraint(:provider_uid_index, name: :identities_provider_uid_index)
   end
 end
