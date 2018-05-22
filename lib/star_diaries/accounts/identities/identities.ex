@@ -8,6 +8,12 @@ defmodule StarDiaries.Accounts.Identities do
     Repo.get_by(Identity, clauses)
   end
 
+  def get_user(identity) do
+    identity
+    |> Ecto.assoc(:user)
+    |> Repo.one()
+  end
+
   def create_with_user(user, attrs) do
     user
     |> Ecto.build_assoc(:identities)

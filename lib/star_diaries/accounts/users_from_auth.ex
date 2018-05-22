@@ -21,7 +21,8 @@ defmodule StarDiaries.Accounts.UsersFromAuth do
       nil ->
         sign_in_user_from_auth(auth)
 
-      # TODO find user by identity
+      identity ->
+        get_user_from_identity(identity)
     end
   end
 
@@ -49,5 +50,10 @@ defmodule StarDiaries.Accounts.UsersFromAuth do
 
   defp create_identity(user, %{uid: uid, provider: provider, credentials: %{token: token}}) do
     Identities.create_with_user(user, %{provider: provider, token: token, uid: uid})
+  end
+
+  defp get_user_from_identity(identity) do
+    user = Identities.get_user(identity)
+    {:ok, user}
   end
 end

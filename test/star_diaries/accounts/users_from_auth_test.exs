@@ -5,18 +5,25 @@ defmodule StarDiaries.Accounts.UsersFromAuthTest do
   alias StarDiaries.Accounts.UsersFromAuth
   alias StarDiaries.Accounts.User
   alias StarDiaries.Accounts.Users
+  alias StarDiaries.Accounts.Identities
 
   @user_email "email@email.com"
   @valid_user_attrs %{email: @user_email, name: "some name"}
+  @valid_identity_attrs %{
+    uid: "42",
+    provider: "github",
+    token: "123"
+  }
+
   @ueberauth %Ueberauth.Auth{
-    uid: "4242",
-    provider: :github,
+    uid: @valid_identity_attrs.uid,
+    provider: @valid_identity_attrs.provider,
     info: %Ueberauth.Auth.Info{
       email: @user_email,
       name: "My name"
     },
     credentials: %Ueberauth.Auth.Credentials{
-      token: "123"
+      token: @valid_identity_attrs.token
     }
   }
 
@@ -24,9 +31,15 @@ defmodule StarDiaries.Accounts.UsersFromAuthTest do
     {:ok, user} =
       attrs
       |> Enum.into(@valid_user_attrs)
-      |> Users.create
+      |> Users.create()
 
     user
+  end
+
+  def identity_fixture(user, attrs \\ %{}) do
+    attrs = Enum.into(attrs, @valid_identity_attrs)
+    {:ok, identity} = Identities.create_with_user(user, attrs)
+    identity
   end
 
   describe "get_or_insert/1"  do
@@ -56,6 +69,18 @@ defmodule StarDiaries.Accounts.UsersFromAuthTest do
       assert identity.token == @ueberauth.credentials.token
       assert identity.provider == to_string(@ueberauth.provider)
       assert identity.uid == to_string(@ueberauth.uid)
+    end
+
+    test "returns user associated to the existing identity" do
+      user = user_fixture()
+      identity = identity_fixture(user)
+
+      assert {:ok, %User{} = user_from_auth} = UsersFromAuth.get_or_insert(@ueberauth)
+      assert user_from_auth == user
+
+      user_from_auth = Repo.preload(user_from_auth, :identities)
+
+      assert (user_from_auth.identities |> List.last()) == identity
     end
   end
 end
