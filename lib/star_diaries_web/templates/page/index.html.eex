@@ -1,8 +1,12 @@
 <br>
 <br>
 
-<a class="btn btn-primary" href="<%= Routes.auth_path(@conn, :request, "github") %>">
+<a class="btn btn-dark" href="<%= Routes.auth_path(@conn, :request, "github") %>">
   Github Login
+</a>
+
+<a class="btn btn-primary" href="<%= Routes.auth_path(@conn, :request, "twitter") %>">
+  Twitter Login
 </a>
 
 <br>

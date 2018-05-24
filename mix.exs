@@ -24,7 +24,8 @@ defmodule StarDiaries.MixProject do
         :logger,
         :runtime_tools,
         :ueberauth,
-        :ueberauth_github
+        :ueberauth_github,
+        :ueberauth_twitter
       ]
     ]
   end
@@ -48,7 +49,9 @@ defmodule StarDiaries.MixProject do
       {:jason, "~> 1.0"},
       {:cowboy, "~> 1.0"},
       {:ueberauth, "~> 0.4"},
-      {:ueberauth_github, "~> 0.7"}
+      {:ueberauth_github, "~> 0.7"},
+      {:ueberauth_twitter, "~> 0.2"},
+      {:oauth, github: "tim/erlang-oauth"}
     ]
   end
 
