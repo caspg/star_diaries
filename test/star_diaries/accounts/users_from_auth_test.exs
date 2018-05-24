@@ -71,6 +71,10 @@ defmodule StarDiaries.Accounts.UsersFromAuthTest do
       assert identity.uid == to_string(@ueberauth.uid)
     end
 
+    test "associate identities to the existing user" do
+      # TODO
+    end
+
     test "returns user associated to the existing identity" do
       user = user_fixture()
       identity = identity_fixture(user)

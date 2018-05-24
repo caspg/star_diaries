@@ -4,7 +4,8 @@ defmodule StarDiaries.Accounts.AuthInfo do
         }
   @type info :: %{
           email: String.t(),
-          name: String.t()
+          name: String.t(),
+          nickname: String.t()
         }
   @type t :: %__MODULE__{
           provider: String.t(),
@@ -29,7 +30,8 @@ defmodule StarDiaries.Accounts.AuthInfo do
       uid: to_string(auth.uid),
       info: %{
         email: auth.info.email,
-        name: auth.info.name
+        name: auth.info.name,
+        nickname: auth.info.nickname
       },
       credentials: %{
         token: auth.credentials.token

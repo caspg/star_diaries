@@ -48,8 +48,13 @@ defmodule StarDiaries.Accounts.UsersFromAuth do
     end
   end
 
-  defp create_identity(user, %{uid: uid, provider: provider, credentials: %{token: token}}) do
-    Identities.create_with_user(user, %{provider: provider, token: token, uid: uid})
+  defp create_identity(user, auth) do
+    Identities.create_with_user(user, %{
+      provider: auth.provider,
+      token: auth.credentials.token,
+      uid: auth.uid,
+      nickname: auth.info.nickname
+    })
   end
 
   defp get_user_from_identity(identity) do
