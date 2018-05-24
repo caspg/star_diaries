@@ -2,9 +2,9 @@ defmodule StarDiaries.Accounts.Users do
   alias StarDiaries.Repo
   alias StarDiaries.Accounts.User
 
-  def get_by(clauses) do
-    Repo.get_by(User, clauses)
-  end
+  def get(id), do: Repo.get(User, id)
+
+  def get_by(clauses), do: Repo.get_by(User, clauses)
 
   @doc """
   Creates a user.

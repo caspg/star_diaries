@@ -16,6 +16,12 @@ defmodule StarDiariesWeb.AuthController do
   end
 
   def callback(%Plug.Conn{assigns: %{ueberauth_auth: auth}} = conn, params) do
+    # TODO: handle error (redirect to root with flash message)
     {:ok, user} = Accounts.get_or_insert_user_from_auth(auth)
+
+    conn
+    |> put_flash(:info, "All good.")
+    |> put_session(:current_user_id, user.id)
+    |> redirect(to: "/")
   end
 end

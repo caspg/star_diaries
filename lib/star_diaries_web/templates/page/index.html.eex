@@ -4,3 +4,10 @@
 <a class="btn btn-primary" href="<%= Routes.auth_path(@conn, :request, "github") %>">
   Github Login
 </a>
+
+<br>
+<br>
+
+<%= if @user_signed_in? do %>
+  <p>Hello, <%= @current_user.name %>, YADA Yada!</p>
+<% end %>

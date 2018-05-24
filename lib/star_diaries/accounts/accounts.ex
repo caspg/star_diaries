@@ -7,6 +7,7 @@ defmodule StarDiaries.Accounts do
   alias StarDiaries.Repo
 
   alias StarDiaries.Accounts.User
+  alias StarDiaries.Accounts.Users
   alias StarDiaries.Accounts.UsersFromAuth
 
   @doc """
@@ -21,6 +22,8 @@ defmodule StarDiaries.Accounts do
   def list_users do
     Repo.all(User)
   end
+
+  def get_user(id), do: Users.get(id)
 
   @doc """
   Gets a single user.
