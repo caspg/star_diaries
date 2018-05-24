@@ -12,7 +12,7 @@ defmodule StarDiaries.Accounts.UsersFromAuth do
 
   def get_or_insert(%Ueberauth.Auth{} = auth) do
     auth
-    |> AuthInfo.to_struct
+    |> AuthInfo.to_struct()
     |> get_or_insert
   end
 
@@ -31,11 +31,11 @@ defmodule StarDiaries.Accounts.UsersFromAuth do
   end
 
   defp sign_in_user_from_auth(auth) do
-    Repo.transaction fn ->
+    Repo.transaction(fn ->
       {:ok, user} = get_or_create_user(auth)
       {:ok, _} = create_identity(user, auth)
       user
-    end
+    end)
   end
 
   defp get_or_create_user(%{info: %{email: email, name: name}}) do

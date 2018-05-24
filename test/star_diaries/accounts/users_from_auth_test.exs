@@ -42,7 +42,7 @@ defmodule StarDiaries.Accounts.UsersFromAuthTest do
     identity
   end
 
-  describe "get_or_insert/1"  do
+  describe "get_or_insert/1" do
     test "create user and identity" do
       assert {:ok, %User{} = user} = UsersFromAuth.get_or_insert(@ueberauth)
 
@@ -60,7 +60,7 @@ defmodule StarDiaries.Accounts.UsersFromAuthTest do
       user = user_fixture()
 
       assert {:ok, %User{} = user_from_auth} = UsersFromAuth.get_or_insert(@ueberauth)
-      assert (Repo.all(User) |> length) == 1
+      assert Repo.all(User) |> length == 1
       assert user == user_from_auth
 
       user = Repo.preload(user, :identities)
@@ -80,7 +80,7 @@ defmodule StarDiaries.Accounts.UsersFromAuthTest do
 
       user_from_auth = Repo.preload(user_from_auth, :identities)
 
-      assert (user_from_auth.identities |> List.last()) == identity
+      assert user_from_auth.identities |> List.last() == identity
     end
   end
 end

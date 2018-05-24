@@ -1,17 +1,17 @@
 defmodule StarDiaries.Accounts.AuthInfo do
   @type credentials :: %{
-    token: String.t()
-  }
+          token: String.t()
+        }
   @type info :: %{
-    email: String.t(),
-    name: String.t()
-  }
+          email: String.t(),
+          name: String.t()
+        }
   @type t :: %__MODULE__{
-    provider: String.t(),
-    uid: String.t(),
-    credentials: credentials,
-    info: info
-  }
+          provider: String.t(),
+          uid: String.t(),
+          credentials: credentials,
+          info: info
+        }
 
   defstruct provider: nil,
             uid: nil,
@@ -29,7 +29,7 @@ defmodule StarDiaries.Accounts.AuthInfo do
       uid: to_string(auth.uid),
       info: %{
         email: auth.info.email,
-        name: auth.info.name,
+        name: auth.info.name
       },
       credentials: %{
         token: auth.credentials.token

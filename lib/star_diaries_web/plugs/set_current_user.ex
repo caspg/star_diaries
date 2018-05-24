@@ -17,6 +17,7 @@ defmodule StarDiariesWeb.Plugs.SetCurrentUser do
     case Accounts.get_user(current_user_id) do
       nil ->
         assign_unlogged_user(conn)
+
       user ->
         assign_logged_in_user(conn, user)
     end

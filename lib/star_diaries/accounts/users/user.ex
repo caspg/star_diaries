@@ -3,10 +3,10 @@ defmodule StarDiaries.Accounts.User do
   import Ecto.Changeset
 
   schema "users" do
-    field :email, :string
-    field :name, :string
+    field(:email, :string)
+    field(:name, :string)
 
-    has_many :identities, StarDiaries.Accounts.Identity
+    has_many(:identities, StarDiaries.Accounts.Identity)
 
     timestamps()
   end

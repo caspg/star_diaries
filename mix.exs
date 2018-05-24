@@ -6,9 +6,9 @@ defmodule StarDiaries.MixProject do
       app: :star_diaries,
       version: "0.1.0",
       elixir: "~> 1.5",
-      elixirc_paths: elixirc_paths(Mix.env),
-      compilers: [:phoenix, :gettext] ++ Mix.compilers,
-      start_permanent: Mix.env == :prod,
+      elixirc_paths: elixirc_paths(Mix.env()),
+      compilers: [:phoenix, :gettext] ++ Mix.compilers(),
+      start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       deps: deps()
     ]
@@ -24,14 +24,14 @@ defmodule StarDiaries.MixProject do
         :logger,
         :runtime_tools,
         :ueberauth,
-        :ueberauth_github,
+        :ueberauth_github
       ]
     ]
   end
 
   # Specifies which paths to compile per environment.
   defp elixirc_paths(:test), do: ["lib", "test/support"]
-  defp elixirc_paths(_),     do: ["lib"]
+  defp elixirc_paths(_), do: ["lib"]
 
   # Specifies your project dependencies.
   #
@@ -48,7 +48,7 @@ defmodule StarDiaries.MixProject do
       {:jason, "~> 1.0"},
       {:cowboy, "~> 1.0"},
       {:ueberauth, "~> 0.4"},
-      {:ueberauth_github, "~> 0.7"},
+      {:ueberauth_github, "~> 0.7"}
     ]
   end
 
@@ -62,7 +62,7 @@ defmodule StarDiaries.MixProject do
     [
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
-      "test": ["ecto.create --quiet", "ecto.migrate", "test"]
+      test: ["ecto.create --quiet", "ecto.migrate", "test"]
     ]
   end
 end

@@ -25,13 +25,13 @@ defmodule StarDiariesWeb.ChannelCase do
     end
   end
 
-
   setup tags do
     :ok = Ecto.Adapters.SQL.Sandbox.checkout(StarDiaries.Repo)
+
     unless tags[:async] do
       Ecto.Adapters.SQL.Sandbox.mode(StarDiaries.Repo, {:shared, self()})
     end
+
     :ok
   end
-
 end

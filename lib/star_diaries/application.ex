@@ -12,7 +12,7 @@ defmodule StarDiaries.Application do
       # Start the Ecto repository
       StarDiaries.Repo,
       # Start the endpoint when the application starts
-      StarDiariesWeb.Endpoint,
+      StarDiariesWeb.Endpoint
       # Starts a worker by calling: StarDiaries.Worker.start_link(arg)
       # {StarDiaries.Worker, arg},
     ]

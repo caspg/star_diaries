@@ -22,7 +22,9 @@ defmodule StarDiaries.IdentitiesTest do
     test "creates identity with valid data" do
       user = user_fixture()
 
-      assert {:ok, %Identity{} = identity} = Identities.create_with_user(user, @valid_identity_attrs)
+      assert {:ok, %Identity{} = identity} =
+               Identities.create_with_user(user, @valid_identity_attrs)
+
       assert identity.provider == @valid_identity_attrs.provider
       assert identity.uid == @valid_identity_attrs.uid
       assert identity.token == @valid_identity_attrs.token

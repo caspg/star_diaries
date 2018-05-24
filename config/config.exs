@@ -6,16 +6,14 @@
 use Mix.Config
 
 # General application configuration
-config :star_diaries,
-  ecto_repos: [StarDiaries.Repo]
+config :star_diaries, ecto_repos: [StarDiaries.Repo]
 
 # Configures the endpoint
 config :star_diaries, StarDiariesWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "3iEjrMQLPNmcVAviDrJ0jBlUpSAVmmg2zN3mADX5OpEKL7fgTv7+ENiYKSPhrQRl",
   render_errors: [view: StarDiariesWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: StarDiaries.PubSub,
-           adapter: Phoenix.PubSub.PG2]
+  pubsub: [name: StarDiaries.PubSub, adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger
 config :logger, :console,
@@ -29,12 +27,13 @@ config :ecto, :json_library, Jason
 # ueberauth_github is using oauth2 and it requires to specify serializer
 config :oauth2,
   serializers: %{
-    "application/json" => Jason,
+    "application/json" => Jason
   }
 
 config :ueberauth, Ueberauth,
   providers: [
-    github: {Ueberauth.Strategy.Github, [default_scope: ""]} #  read-only access to public information
+    #  read-only access to public information
+    github: {Ueberauth.Strategy.Github, [default_scope: ""]}
   ]
 
 config :ueberauth, Ueberauth.Strategy.Github.OAuth,
@@ -43,4 +42,4 @@ config :ueberauth, Ueberauth.Strategy.Github.OAuth,
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
-import_config "#{Mix.env}.exs"
+import_config "#{Mix.env()}.exs"

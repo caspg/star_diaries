@@ -8,9 +8,9 @@ defmodule StarDiariesWeb.AuthController do
 
   use StarDiariesWeb, :controller
 
-  plug Ueberauth
+  plug(Ueberauth)
 
   def callback(conn, _params), do: Callback.call(conn)
 
-  def logout(conn, _params),  do: Logout.call(conn)
+  def logout(conn, _params), do: Logout.call(conn)
 end

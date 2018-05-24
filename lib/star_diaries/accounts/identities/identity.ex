@@ -3,11 +3,11 @@ defmodule StarDiaries.Accounts.Identity do
   import Ecto.Changeset
 
   schema "identities" do
-    field :provider, :string
-    field :uid, :string
-    field :token, :string
+    field(:provider, :string)
+    field(:uid, :string)
+    field(:token, :string)
 
-    belongs_to :user, StarDiaries.Accounts.User
+    belongs_to(:user, StarDiaries.Accounts.User)
 
     timestamps()
   end
