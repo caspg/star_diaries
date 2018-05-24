@@ -8,17 +8,17 @@ defmodule StarDiariesWeb.Plugs.SetCurrentUser do
 
   def call(conn, _options) do
     current_user_id = get_user_id(conn)
-    maybe_find_user(conn, current_user_id)
+    find_and_assign_user(conn, current_user_id)
   end
 
-  defp maybe_find_user(conn, nil), do: assign_unlogged_user(conn)
+  defp find_and_assign_user(conn, nil), do: assign_unlogged_user(conn)
 
-  defp maybe_find_user(conn, current_user_id) do
+  defp find_and_assign_user(conn, current_user_id) do
     case Accounts.get_user(current_user_id) do
-      user ->
-        assign_logged_in_user(conn, user)
       nil ->
         assign_unlogged_user(conn)
+      user ->
+        assign_logged_in_user(conn, user)
     end
   end
 
