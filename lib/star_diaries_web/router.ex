@@ -24,6 +24,8 @@ defmodule StarDiariesWeb.Router do
   scope "/auth", StarDiariesWeb do
     pipe_through :browser # Use the default browser stack
 
+    delete "/logout", AuthController, :logout
+
     # request action is handled by Überauth
     get "/:provider", AuthController, :request
     get "/:provider/callback", AuthController, :callback
