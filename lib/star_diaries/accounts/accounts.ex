@@ -10,15 +10,11 @@ defmodule StarDiaries.Accounts do
   alias StarDiaries.Accounts.Users
   alias StarDiaries.Accounts.UsersFromAuth
 
-  def get_user(id), do: Users.get(id)
+  def get_user(id), do: Users.get_user(id)
 
-  def get_user_by(clauses) do
-    Repo.get_by(User, clauses)
-  end
+  def get_user_by(clauses), do: Users.get_user_by(clauses)
 
-  def create_user(attrs \\ %{}) do
-    Users.create(attrs)
-  end
+  def create_user(attrs \\ %{}), do: Users.create_user(attrs)
 
   def get_or_insert_user_from_auth(%Ueberauth.Auth{} = auth) do
     UsersFromAuth.get_or_insert(auth)

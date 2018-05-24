@@ -1,4 +1,6 @@
 defmodule StarDiaries.Accounts.Users do
+  import Ecto.Query, warn: false
+
   alias StarDiaries.Repo
   alias StarDiaries.Accounts.User
 
@@ -11,11 +13,11 @@ defmodule StarDiaries.Accounts.Users do
       [%User{}, ...]
 
   """
-  def list do
+  def list_users do
     Repo.all(User)
   end
 
-    @doc """
+  @doc """
   Gets a single user.
 
   Raises `Ecto.NoResultsError` if the User does not exist.
@@ -29,11 +31,11 @@ defmodule StarDiaries.Accounts.Users do
       ** (Ecto.NoResultsError)
 
   """
-  def get!(id), do: Repo.get!(User, id)
+  def get_user!(id), do: Repo.get!(User, id)
 
-  def get(id), do: Repo.get(User, id)
+  def get_user(id), do: Repo.get(User, id)
 
-  def get_by(clauses), do: Repo.get_by(User, clauses)
+  def get_user_by(clauses), do: Repo.get_by(User, clauses)
 
   @doc """
   Creates a user.
@@ -47,7 +49,7 @@ defmodule StarDiaries.Accounts.Users do
       {:error, %Ecto.Changeset{}}
 
   """
-  def create(attrs \\ %{}) do
+  def create_user(attrs \\ %{}) do
     %User{}
     |> User.changeset(attrs)
     |> Repo.insert()
