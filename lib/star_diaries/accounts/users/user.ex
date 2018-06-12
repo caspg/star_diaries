@@ -5,6 +5,7 @@ defmodule StarDiaries.Accounts.User do
   schema "users" do
     field(:email, :string)
     field(:name, :string)
+    field(:add_encrypted_password, :string)
 
     has_many(:identities, StarDiaries.Accounts.Identity)
 
