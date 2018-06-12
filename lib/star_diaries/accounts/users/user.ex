@@ -23,10 +23,25 @@ defmodule StarDiaries.Accounts.User do
     |> unique_constraint(:email)
   end
 
-  def changeset(user, attrs) do
+  def create_changeset(user, attrs) do
     user
     |> cast(attrs, [:email, :password, :password_confirmation])
     |> validate_required([:email, :password, :password_confirmation])
+    |> validate_length(:password, min: 8)
+    |> validate_confirmation(:password)
+    |> hash_password()
     |> unique_constraint(:email)
+  end
+
+  defp hash_password(changeset) do
+    case changeset do
+      %Ecto.Changeset{valid?: true, changes: %{password: password}} ->
+        changeset
+        |> delete_change(:password)
+        |> delete_change(:password_confirmation)
+
+      _ ->
+        changeset
+    end
   end
 end

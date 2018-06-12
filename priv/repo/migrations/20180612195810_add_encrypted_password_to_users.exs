@@ -3,7 +3,7 @@ defmodule StarDiaries.Repo.Migrations.AddEncryptedPasswordToUsers do
 
   def change do
     alter table(:users) do
-      add :add_encrypted_password, :string
+      add :encrypted_password, :string
     end
   end
 end

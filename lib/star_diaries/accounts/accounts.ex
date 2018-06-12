@@ -14,7 +14,7 @@ defmodule StarDiaries.Accounts do
 
   def get_user_by(clauses), do: Users.get_user_by(clauses)
 
-  def create_user(attrs \\ %{}), do: Users.create_user(attrs)
+  def create_user(attrs \\ %{}), do: Users.create(attrs)
 
   def get_or_insert_user_from_auth(%Ueberauth.Auth{} = auth) do
     UsersFromAuth.get_or_insert(auth)

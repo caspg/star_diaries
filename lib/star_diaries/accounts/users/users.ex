@@ -55,6 +55,12 @@ defmodule StarDiaries.Accounts.Users do
     |> Repo.insert()
   end
 
+  def create(attrs \\ %{}) do
+    %User{}
+    |> User.create_changeset(attrs)
+    |> Repo.insert()
+  end
+
   @doc """
   Deletes a User.
 

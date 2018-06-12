@@ -18,7 +18,12 @@ defmodule StarDiariesWeb.Plugs.SetCurrentUserTest do
   end
 
   test "current_user is assigned" do
-    {:ok, user} = Accounts.create_user(%{email: "email", name: "name"})
+    {:ok, user} = Accounts.create_user(%{
+      email: "email",
+      name: "name",
+      password: "password",
+      password_confirmation: "password"
+    })
     conn = run_plug(user.id)
 
     assert conn.assigns[:current_user] == user
