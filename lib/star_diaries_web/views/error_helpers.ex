@@ -8,10 +8,18 @@ defmodule StarDiariesWeb.ErrorHelpers do
   @doc """
   Generates tag for inlined form input errors.
   """
-  def error_tag(form, field) do
-    Enum.map(Keyword.get_values(form.errors, field), fn error ->
-      content_tag(:span, translate_error(error), class: "help-block")
-    end)
+  def error_tag(form, field, html_opts \\ []) do
+    Keyword.get_values(form.errors, field)
+    |> List.first()
+    |> render_error_tag(html_opts)
+  end
+
+  def render_error_tag(nil, _html_opts), do: nil
+
+  def render_error_tag(error, html_opts) do
+    class = Keyword.get(html_opts, :class)
+
+    content_tag(:span, translate_error(error), class: class)
   end
 
   @doc """

@@ -1,0 +1,29 @@
+<br>
+<br>
+
+<%= form_for @user_changeset, Routes.users_path(@conn, :create), fn f -> %>
+  <div class="form-group">
+    <%= label f, :email, class: "control-label" %>
+    <%= text_input f, :email, class: "form-control" %>
+
+    <%= error_tag f, :email, class: "text-danger" %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :password, class: "control-label" %>
+    <%= text_input f, :password, class: "form-control" %>
+
+    <%= error_tag f, :password, class: "text-danger" %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :password_confirmation, class: "control-label" %>
+    <%= text_input f, :password_confirmation, class: "form-control" %>
+
+    <%= error_tag f, :password_confirmation, class: "text-danger" %>
+  </div>
+
+  <div class="form-group">
+    <%= submit "Submit", class: "btn btn-primary" %>
+  </div>
+<% end %>
