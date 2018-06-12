@@ -19,4 +19,11 @@
 <br>
 <br>
 
-<%= link "Logout", to: Routes.auth_path(@conn, :logout), method: :delete, class: "btn btn-default" %>
+<%= if @user_signed_in? do %>
+  <%= link "Logout", to: Routes.auth_path(@conn, :logout), method: :delete, class: "btn btn-default" %>
+<% end %>
+
+<br>
+<br>
+
+<%= link "Sign up", to: Routes.users_path(@conn, :new), class: "btn btn-default" %>
