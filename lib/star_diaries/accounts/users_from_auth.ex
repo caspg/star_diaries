@@ -41,7 +41,7 @@ defmodule StarDiaries.Accounts.UsersFromAuth do
   defp get_or_create_user(%{info: %{email: email, name: name}}) do
     case Users.get_user_by(email: email) do
       nil ->
-        Users.create_user(%{email: email, name: name})
+        Users.create_user_from_identity(%{email: email, name: name})
 
       user ->
         {:ok, user}

@@ -18,7 +18,6 @@ defmodule StarDiaries.Accounts.Identity do
     uid
     token
     user_id
-    nickname
   )a
 
   def changeset(identity, %{} = attrs) do

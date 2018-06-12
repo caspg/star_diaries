@@ -31,7 +31,7 @@ defmodule StarDiaries.Accounts.UsersFromAuthTest do
     {:ok, user} =
       attrs
       |> Enum.into(@valid_user_attrs)
-      |> Users.create_user()
+      |> Users.create_user_from_identity()
 
     user
   end

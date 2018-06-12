@@ -7,16 +7,26 @@ defmodule StarDiaries.Accounts.User do
     field(:name, :string)
     field(:add_encrypted_password, :string)
 
+    field :password, :string, virtual: true
+    field :password_confirmation, :string, virtual: true
+
     has_many(:identities, StarDiaries.Accounts.Identity)
 
     timestamps()
   end
 
   @doc false
-  def changeset(user, attrs) do
+  def changeset_from_identity(user, attrs) do
     user
     |> cast(attrs, [:name, :email])
     |> validate_required([:name, :email])
+    |> unique_constraint(:email)
+  end
+
+  def changeset(user, attrs) do
+    user
+    |> cast(attrs, [:email, :password, :password_confirmation])
+    |> validate_required([:email, :password, :password_confirmation])
     |> unique_constraint(:email)
   end
 end
