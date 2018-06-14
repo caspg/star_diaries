@@ -2,6 +2,8 @@ defmodule StarDiaries.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @bcrypt Application.get_env(:star_diaries, :bcrypt)
+
   schema "users" do
     field(:email, :string)
     field(:name, :string)
@@ -42,6 +44,7 @@ defmodule StarDiaries.Accounts.User do
         changeset
         |> delete_change(:password)
         |> delete_change(:password_confirmation)
+        |> put_change(:encrypted_password, @bcrypt.hashpwsalt(password))
 
       _ ->
         changeset

@@ -51,6 +51,8 @@ defmodule StarDiaries.MixProject do
       {:ueberauth, "~> 0.4"},
       {:ueberauth_github, "~> 0.7"},
       {:ueberauth_twitter, "~> 0.2"},
+      {:comeonin, "~> 4.0"},
+      {:bcrypt_elixir, "~> 1.0"},
       {:oauth, github: "tim/erlang-oauth"}
     ]
   end

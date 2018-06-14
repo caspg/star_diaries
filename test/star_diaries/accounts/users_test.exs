@@ -3,6 +3,8 @@ defmodule StarDiaries.Accounts.UsersTest do
 
   alias StarDiaries.Accounts.Users
 
+  @bcrypt Application.get_env(:star_diaries, :bcrypt)
+
   describe "users" do
     alias StarDiaries.Accounts.User
 
@@ -53,7 +55,7 @@ defmodule StarDiaries.Accounts.UsersTest do
       }
 
       assert {:ok, %User{} = user} = Users.create(attrs)
-      assert user.encrypted_password != nil
+      assert user.encrypted_password == @bcrypt.hashpwsalt(attrs.password)
     end
   end
 end

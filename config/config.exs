@@ -8,6 +8,8 @@ use Mix.Config
 # General application configuration
 config :star_diaries, ecto_repos: [StarDiaries.Repo]
 
+config :star_diaries, :bcrypt, Comeonin.Bcrypt
+
 # Configures the endpoint
 config :star_diaries, StarDiariesWeb.Endpoint,
   url: [host: "localhost"],
