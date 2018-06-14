@@ -5,7 +5,7 @@ defmodule StarDiaries.Accounts.User do
   schema "users" do
     field(:email, :string)
     field(:name, :string)
-    field(:add_encrypted_password, :string)
+    field(:encrypted_password, :string)
 
     field :password, :string, virtual: true
     field :password_confirmation, :string, virtual: true
@@ -23,10 +23,13 @@ defmodule StarDiaries.Accounts.User do
     |> unique_constraint(:email)
   end
 
+  # TODO(kacper): validate password format (1 number etc)
+  # TODO(kacper): validate email format
   def create_changeset(user, attrs) do
     user
     |> cast(attrs, [:email, :password, :password_confirmation])
     |> validate_required([:email, :password, :password_confirmation])
+    |> validate_format(:email, ~r/@/)
     |> validate_length(:password, min: 8)
     |> validate_confirmation(:password)
     |> hash_password()

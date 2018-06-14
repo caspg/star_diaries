@@ -11,14 +11,14 @@
 
   <div class="form-group">
     <%= label f, :password, class: "control-label" %>
-    <%= text_input f, :password, class: "form-control" %>
+    <%= password_input f, :password, class: "form-control" %>
 
     <%= error_tag f, :password, class: "text-danger" %>
   </div>
 
   <div class="form-group">
     <%= label f, :password_confirmation, class: "control-label" %>
-    <%= text_input f, :password_confirmation, class: "form-control" %>
+    <%= password_input f, :password_confirmation, class: "form-control" %>
 
     <%= error_tag f, :password_confirmation, class: "text-danger" %>
   </div>

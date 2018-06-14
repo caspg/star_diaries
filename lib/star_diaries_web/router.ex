@@ -21,6 +21,7 @@ defmodule StarDiariesWeb.Router do
     get("/", PageController, :index)
 
     get("/join", UsersController, :new)
+    post("/join", UsersController, :create)
   end
 
   # Ueberauth authentication

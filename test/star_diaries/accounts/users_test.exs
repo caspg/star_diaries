@@ -44,5 +44,16 @@ defmodule StarDiaries.Accounts.UsersTest do
       assert {:ok, %User{}} = Users.delete_user(user)
       assert_raise Ecto.NoResultsError, fn -> Users.get_user!(user.id) end
     end
+
+    test "create/1 with valid data creates user" do
+      attrs = %{
+        email: "some@email.com",
+        password: "password",
+        password_confirmation: "password"
+      }
+
+      assert {:ok, %User{} = user} = Users.create(attrs)
+      assert user.encrypted_password != nil
+    end
   end
 end

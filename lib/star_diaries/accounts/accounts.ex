@@ -19,4 +19,17 @@ defmodule StarDiaries.Accounts do
   def get_or_insert_user_from_auth(%Ueberauth.Auth{} = auth) do
     UsersFromAuth.get_or_insert(auth)
   end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking user changes.
+
+  ## Examples
+
+      iex> create_user_changeset(user)
+      %Ecto.Changeset{source: %User{}}
+
+  """
+  def create_user_changeset(%User{} = user) do
+    User.create_changeset(user, %{})
+  end
 end
