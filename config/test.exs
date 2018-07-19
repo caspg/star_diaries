@@ -17,3 +17,5 @@ config :star_diaries, StarDiaries.Repo,
   database: "star_diaries_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
+
+config :star_diaries, :bcrypt, StarDiariesWeb.BcryptMock
