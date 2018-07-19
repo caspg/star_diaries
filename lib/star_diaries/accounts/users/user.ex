@@ -25,14 +25,15 @@ defmodule StarDiaries.Accounts.User do
     |> unique_constraint(:email)
   end
 
-  # TODO(kacper): validate password format (1 number etc)
-  # TODO(kacper): validate email format
   def create_changeset(user, attrs) do
     user
     |> cast(attrs, [:email, :password, :password_confirmation])
     |> validate_required([:email, :password, :password_confirmation])
     |> validate_format(:email, ~r/@/)
     |> validate_length(:password, min: 8)
+    |> validate_format(:password, ~r/[0-9]+/, message: "must contain a number")
+    |> validate_format(:password, ~r/[A-Z]+/, message: "must contain an upper-case letter")
+    |> validate_format(:password, ~r/[a-z]+/, message: "must contain a lower-case letter")
     |> validate_confirmation(:password)
     |> hash_password()
     |> unique_constraint(:email)

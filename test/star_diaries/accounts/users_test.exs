@@ -2,12 +2,9 @@ defmodule StarDiaries.Accounts.UsersTest do
   use StarDiaries.DataCase
 
   alias StarDiaries.Accounts.Users
-
-  @bcrypt Application.get_env(:star_diaries, :bcrypt)
+  alias StarDiaries.Accounts.User
 
   describe "users" do
-    alias StarDiaries.Accounts.User
-
     @valid_attrs %{email: "some email", name: "some name"}
     @update_attrs %{email: "some updated email", name: "some updated name"}
     @invalid_attrs %{email: nil, name: nil}
@@ -45,17 +42,6 @@ defmodule StarDiaries.Accounts.UsersTest do
       user = user_fixture()
       assert {:ok, %User{}} = Users.delete_user(user)
       assert_raise Ecto.NoResultsError, fn -> Users.get_user!(user.id) end
-    end
-
-    test "create/1 with valid data creates user" do
-      attrs = %{
-        email: "some@email.com",
-        password: "password",
-        password_confirmation: "password"
-      }
-
-      assert {:ok, %User{} = user} = Users.create(attrs)
-      assert user.encrypted_password == @bcrypt.hashpwsalt(attrs.password)
     end
   end
 end
