@@ -8,7 +8,7 @@ defmodule StarDiaries.Emails.ConfirmationEmail do
     body = """
     Welcome!
 
-    Please confirm your account by clicking below link:
+    Please confirm your account by clicking the link below:
 
     #{confirmation_url}
     """

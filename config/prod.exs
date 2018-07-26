@@ -21,6 +21,10 @@ config :star_diaries, StarDiariesWeb.Endpoint,
 # Do not print debug messages in production
 config :logger, level: :info
 
+config :star_diaries, StarDiaries.Emails.Mailer,
+  adapter: Bamboo.SendGridAdapter,
+  api_key: {:system, "SENDGRID_API_KEY"}
+
 # ## SSL Support
 #
 # To get SSL working, you will need to add the `https` key
