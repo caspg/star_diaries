@@ -38,4 +38,8 @@ defmodule StarDiariesWeb.Router do
     get("/:provider", UeberauthController, :request)
     get("/:provider/callback", UeberauthController, :callback)
   end
+
+  if Mix.env == :dev do
+    forward "/sent_emails", Bamboo.SentEmailViewerPlug
+  end
 end

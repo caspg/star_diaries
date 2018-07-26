@@ -17,6 +17,12 @@ config :star_diaries, StarDiariesWeb.Endpoint,
   render_errors: [view: StarDiariesWeb.ErrorView, accepts: ~w(html json)],
   pubsub: [name: StarDiaries.PubSub, adapter: Phoenix.PubSub.PG2]
 
+config :star_diaries, StarDiaries.Emails.Mailer,
+  adapter: Bamboo.LocalAdapter
+
+config :star_diaries, :emails,
+  from_email: "star_diaries@todo.com"
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
