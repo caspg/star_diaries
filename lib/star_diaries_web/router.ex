@@ -33,7 +33,7 @@ defmodule StarDiariesWeb.Router do
     pipe_through(:browser)
 
     # request action is handled by Überauth
-    get("/:provider", AuthController, :request)
-    get("/:provider/callback", AuthController, :callback)
+    get("/:provider", UeberauthController, :request)
+    get("/:provider/callback", UeberauthController, :callback)
   end
 end
