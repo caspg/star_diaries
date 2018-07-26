@@ -19,3 +19,9 @@ config :star_diaries, StarDiaries.Repo,
   pool: Ecto.Adapters.SQL.Sandbox
 
 config :star_diaries, :bcrypt, StarDiariesWeb.BcryptMock
+
+config :star_diaries, :emails,
+  from_email: "test_from@email.com"
+
+config :star_diaries, StarDiaries.Emails.Mailer,
+  adapter: Bamboo.TestAdapter

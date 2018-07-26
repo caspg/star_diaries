@@ -18,6 +18,6 @@ defmodule StarDiaries.Emails.ConfirmationEmail do
       from: @from_email,
       subject: subject,
       text_body: body
-    ) |> IO.inspect
+    )
   end
 end
