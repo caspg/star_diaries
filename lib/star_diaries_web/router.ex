@@ -24,14 +24,13 @@ defmodule StarDiariesWeb.Router do
     post("/join", UsersController, :create)
 
     get("/login", SessionController, :new)
+    delete("/logout", SessionController, :delete)
   end
 
   # Ueberauth authentication
   scope "/auth", StarDiariesWeb do
     # Use the default browser stack
     pipe_through(:browser)
-
-    delete("/logout", AuthController, :logout)
 
     # request action is handled by Überauth
     get("/:provider", AuthController, :request)

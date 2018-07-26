@@ -20,7 +20,7 @@
 <br>
 
 <%= if @user_signed_in? do %>
-  <%= link "Logout", to: Routes.ueberauth_path(@conn, :logout), method: :delete, class: "btn btn-default" %>
+  <%= link "Logout", to: Routes.session_path(@conn, :delete), method: :delete, class: "btn btn-default" %>
 <% end %>
 
 <br>
