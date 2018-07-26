@@ -1,8 +1,10 @@
 defmodule StarDiaries.Accounts.Users do
   import Ecto.Query, warn: false
 
+  alias __MODULE__
   alias StarDiaries.Repo
   alias StarDiaries.Accounts.User
+  alias StarDiaries.Accounts.Users.Authentication
 
   @doc """
   Returns the list of users.
