@@ -3,11 +3,8 @@ defmodule StarDiariesWeb.SessionController do
 
   alias StarDiaries.Accounts
 
-  def new(%Plug.Conn{assigns: %{current_user: current_user}} = conn, _params) do
-    conn
-    |> put_flash(:info, "Already logged in!")
-    |> redirect(to: "/")
-  end
+  plug(StarDiariesWeb.Plugs.EnsureUnLogged when action in [:new, :create])
+  plug(StarDiariesWeb.Plugs.EnsureLoggedIn when action in [:delete])
 
   def new(conn, _params) do
     render(conn, "new.html")
@@ -26,12 +23,6 @@ defmodule StarDiariesWeb.SessionController do
         |> put_flash(:error, "invalid credentials!")
         |> render("new.html")
     end
-  end
-
-  def delete(%Plug.Conn{assigns: %{current_user: nil}} = conn, _params) do
-    conn
-    |> put_flash(:info, "Already logged out")
-    |> redirect(to: "/")
   end
 
   def delete(%Plug.Conn{assigns: %{current_user: current_user}} = conn, _params) do
