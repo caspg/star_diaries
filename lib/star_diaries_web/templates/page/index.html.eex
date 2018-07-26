@@ -1,11 +1,11 @@
 <br>
 <br>
 
-<a class="btn btn-dark" href="<%= Routes.auth_path(@conn, :request, "github") %>">
+<a class="btn btn-dark" href="<%= Routes.ueberauth_path(@conn, :request, "github") %>">
   Github Login
 </a>
 
-<a class="btn btn-primary" href="<%= Routes.auth_path(@conn, :request, "twitter") %>">
+<a class="btn btn-primary" href="<%= Routes.ueberauth_path(@conn, :request, "twitter") %>">
   Twitter Login
 </a>
 
@@ -20,10 +20,15 @@
 <br>
 
 <%= if @user_signed_in? do %>
-  <%= link "Logout", to: Routes.auth_path(@conn, :logout), method: :delete, class: "btn btn-default" %>
+  <%= link "Logout", to: Routes.ueberauth_path(@conn, :logout), method: :delete, class: "btn btn-default" %>
 <% end %>
 
 <br>
 <br>
 
 <%= link "Sign up", to: Routes.users_path(@conn, :new), class: "btn btn-default" %>
+
+<br>
+<br>
+
+<%= link "Login", to: Routes.session_path(@conn, :new), class: "btn btn-default" %>
