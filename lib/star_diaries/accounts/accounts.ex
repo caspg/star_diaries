@@ -9,6 +9,7 @@ defmodule StarDiaries.Accounts do
   alias StarDiaries.Accounts.User
   alias StarDiaries.Accounts.Users
   alias StarDiaries.Accounts.UsersFromAuth
+  alias StarDiaries.Accounts.Authentication
 
   def get_user(id), do: Users.get_user(id)
 
@@ -31,5 +32,9 @@ defmodule StarDiaries.Accounts do
   """
   def create_user_changeset(%User{} = user) do
     User.create_changeset(user, %{})
+  end
+
+  def auth_valid?(email, password) do
+    Authentication.valid?(email, password)
   end
 end

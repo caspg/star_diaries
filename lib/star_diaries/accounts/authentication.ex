@@ -3,6 +3,9 @@ defmodule StarDiaries.Accounts.Authentication do
 
   @bcrypt Application.get_env(:star_diaries, :bcrypt)
 
+  def valid?(nil, _password), do: :error
+  def valid?(_email, nil), do: :error
+
   def valid?(email, password) do
     user = Users.get_user_by(%{email: email})
 

@@ -24,6 +24,8 @@ defmodule StarDiariesWeb.Router do
     post("/join", UsersController, :create)
 
     get("/login", SessionController, :new)
+    post("/login", SessionController, :create)
+
     delete("/logout", SessionController, :delete)
   end
 
