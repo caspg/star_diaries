@@ -8,9 +8,12 @@ defmodule StarDiaries.Accounts.User do
     field(:email, :string)
     field(:name, :string)
     field(:encrypted_password, :string)
+    field(:confirmation_token, :string)
+    field(:confirmation_sent_at, :naive_datetime)
+    field(:confirmed_at, :naive_datetime)
 
-    field :password, :string, virtual: true
-    field :password_confirmation, :string, virtual: true
+    field(:password, :string, virtual: true)
+    field(:password_confirmation, :string, virtual: true)
 
     has_many(:identities, StarDiaries.Accounts.Identity)
 
