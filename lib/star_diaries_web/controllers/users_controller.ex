@@ -4,6 +4,8 @@ defmodule StarDiariesWeb.UsersController do
   alias StarDiaries.Accounts
   alias StarDiaries.Accounts.User
 
+  plug(StarDiariesWeb.Plugs.EnsureUnLogged when action in [:new, :create])
+
   def new(conn, _params) do
     user_changeset = Accounts.create_user_changeset(%User{})
     render(conn, "new.html", user_changeset: user_changeset)

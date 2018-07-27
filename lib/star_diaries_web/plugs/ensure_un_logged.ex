@@ -15,5 +15,6 @@ defmodule StarDiariesWeb.Plugs.EnsureUnLogged do
     conn
     |> put_flash(:info, "You are already logged in.")
     |> redirect(to: "/")
+    |> halt()
   end
 end

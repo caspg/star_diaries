@@ -11,6 +11,7 @@ defmodule StarDiariesWeb.Plugs.EnsureLoggedIn do
     conn
     |> put_flash(:info, "You have to be logged in to access this page.")
     |> redirect(to: "/")
+    |> halt()
   end
 
   def call(%Plug.Conn{assigns: %{current_user: %User{}}} = conn, _options) do
