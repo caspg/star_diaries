@@ -14,6 +14,7 @@
 
       <%= show_flash_message(@conn, :info) %>
       <%= show_flash_message(@conn, :error) %>
+      <%= show_flash_message(@conn, :warning) %>
 
       <%= render "_unconfirmed_user_message.html", conn: @conn %>
 

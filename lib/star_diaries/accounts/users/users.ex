@@ -7,6 +7,9 @@ defmodule StarDiaries.Accounts.Users do
   alias StarDiaries.Accounts.Users.Authentication
   alias StarDiaries.SecureRandom
   alias StarDiaries.Helpers
+  alias StarDiaries.Accounts.Users.UseCases
+
+  defdelegate confirm(token), to: UseCases.Confirm, as: :call
 
   @doc """
   Returns the list of users.
@@ -39,7 +42,7 @@ defmodule StarDiaries.Accounts.Users do
 
   def get_user(id), do: Repo.get(User, id)
 
-  def get_user_by(clauses), do: Repo.get_by(User, clauses)
+  def get_by(clauses), do: Repo.get_by(User, clauses)
 
   @doc """
   Creates a user.
@@ -87,6 +90,28 @@ defmodule StarDiaries.Accounts.Users do
   """
   def delete_user(%User{} = user) do
     Repo.delete(user)
+  end
+
+  @doc """
+  Confirms a User.
+
+  ## Examples
+
+      iex> confirm(user, confirmed_at)
+      {:ok, %User{}}
+
+      iex> confirm(user, confirmed_at)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def confirm(user, confirmed_at) do
+    user
+    |> User.update_confirmed_at_changset(%{confirmed_at: confirmed_at})
+    |> Repo.update()
+  end
+
+  def confirmed?(user) do
+    user.confirmed_at != nil
   end
 
   defp put_confirmation_token(%{} = attrs) do

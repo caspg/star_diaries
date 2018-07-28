@@ -42,6 +42,6 @@ defmodule StarDiariesWeb.Plugs.SetCurrentUser do
   end
 
   defp user_confirmed?(user) do
-    user.confirmed_at != nil
+    Accounts.user_confirmed?(user)
   end
 end

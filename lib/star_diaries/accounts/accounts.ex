@@ -11,9 +11,12 @@ defmodule StarDiaries.Accounts do
   alias StarDiaries.Accounts.UsersFromAuth
   alias StarDiaries.Accounts.Authentication
 
+  defdelegate user_confirmed?(user), to: Users, as: :confirmed?
+  defdelegate confirm_user(token), to: Users, as: :confirm
+
   def get_user(id), do: Users.get_user(id)
 
-  def get_user_by(clauses), do: Users.get_user_by(clauses)
+  def get_user_by(clauses), do: Users.get_by(clauses)
 
   def create_user(attrs \\ %{}), do: Users.create(attrs)
 

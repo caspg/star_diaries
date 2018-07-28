@@ -7,7 +7,7 @@ defmodule StarDiaries.Accounts.Authentication do
   def valid?(_email, nil), do: :error
 
   def valid?(email, password) do
-    user = Users.get_user_by(%{email: email})
+    user = Users.get_by(%{email: email})
 
     case user do
       nil ->

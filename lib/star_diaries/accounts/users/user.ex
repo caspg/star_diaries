@@ -30,7 +30,7 @@ defmodule StarDiaries.Accounts.User do
 
   def create_changeset(user, attrs) do
     user
-    |> cast(attrs, [:email, :password, :password_confirmation, :confirmation_token, :confirmed_at])
+    |> cast(attrs, [:email, :password, :password_confirmation, :confirmation_token])
     |> validate_required([:email, :password, :password_confirmation, :confirmation_token])
     |> validate_format(:email, ~r/@/)
     |> validate_length(:password, min: 8)
@@ -40,6 +40,12 @@ defmodule StarDiaries.Accounts.User do
     |> validate_confirmation(:password)
     |> hash_password()
     |> unique_constraint(:email)
+  end
+
+  def update_confirmed_at_changset(user, attrs) do
+    user
+    |> cast(attrs, [:confirmed_at])
+    |> validate_required([:confirmed_at])
   end
 
   defp hash_password(changeset) do
