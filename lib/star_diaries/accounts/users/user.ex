@@ -30,8 +30,8 @@ defmodule StarDiaries.Accounts.User do
 
   def create_changeset(user, attrs) do
     user
-    |> cast(attrs, [:email, :password, :password_confirmation])
-    |> validate_required([:email, :password, :password_confirmation])
+    |> cast(attrs, [:email, :password, :password_confirmation, :confirmation_token])
+    |> validate_required([:email, :password, :password_confirmation, :confirmation_token])
     |> validate_format(:email, ~r/@/)
     |> validate_length(:password, min: 8)
     |> validate_format(:password, ~r/[0-9]+/, message: "must contain a number")

@@ -17,6 +17,7 @@ defmodule StarDiaries.Accounts.UsersCreateTest do
     test "creates user with valid data " do
       assert {:ok, %User{} = user} = Users.create(@valid_attrs)
       assert user.encrypted_password == @bcrypt.hashpwsalt(@valid_attrs.password)
+      assert user.confirmation_token != nil
     end
 
     test "email validation" do

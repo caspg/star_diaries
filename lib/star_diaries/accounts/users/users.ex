@@ -5,6 +5,8 @@ defmodule StarDiaries.Accounts.Users do
   alias StarDiaries.Repo
   alias StarDiaries.Accounts.User
   alias StarDiaries.Accounts.Users.Authentication
+  alias StarDiaries.SecureRandom
+  alias StarDiaries.Helpers
 
   @doc """
   Returns the list of users.
@@ -58,6 +60,10 @@ defmodule StarDiaries.Accounts.Users do
   end
 
   def create(attrs \\ %{}) do
+    attrs = attrs
+            |> Helpers.key_to_atom()
+            |> put_confirmation_token()
+
     %User{}
     |> User.create_changeset(attrs)
     |> Repo.insert()
@@ -77,5 +83,12 @@ defmodule StarDiaries.Accounts.Users do
   """
   def delete_user(%User{} = user) do
     Repo.delete(user)
+  end
+
+  defp put_confirmation_token(%{} = attrs) do
+    confirmation_token = SecureRandom.generate()
+
+    attrs
+    |> Map.put(:confirmation_token, confirmation_token)
   end
 end
