@@ -44,7 +44,7 @@ defmodule StarDiaries.Accounts.User do
 
   def update_confirmed_at_changset(user, attrs) do
     user
-    |> cast(attrs, [:confirmed_at])
+    |> cast(attrs, [:confirmed_at, :confirmation_token])
     |> validate_required([:confirmed_at])
   end
 

@@ -105,8 +105,13 @@ defmodule StarDiaries.Accounts.Users do
 
   """
   def confirm(user, confirmed_at) do
+    attrs = %{
+      confirmed_at: confirmed_at,
+      confirmation_token: nil
+    }
+
     user
-    |> User.update_confirmed_at_changset(%{confirmed_at: confirmed_at})
+    |> User.update_confirmed_at_changset(attrs)
     |> Repo.update()
   end
 

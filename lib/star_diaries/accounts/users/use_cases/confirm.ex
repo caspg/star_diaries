@@ -1,4 +1,6 @@
 defmodule StarDiaries.Accounts.Users.UseCases.Confirm do
+  require Logger
+
   alias StarDiaries.Accounts.Users
 
   def call(token) do
@@ -10,7 +12,7 @@ defmodule StarDiaries.Accounts.Users.UseCases.Confirm do
       {:error, error} ->
         {:error, error}
 
-      _ ->
+      :error ->
         :error
     end
   end
@@ -31,7 +33,9 @@ defmodule StarDiaries.Accounts.Users.UseCases.Confirm do
       {:ok, user} ->
         {:ok, user}
 
-      _ ->
+      {:error, reason} ->
+        Logger.error("Unknown error")
+        reason |> IO.inspect()
         :error
     end
   end
