@@ -54,6 +54,10 @@ defmodule StarDiaries.Accounts.Users do
 
   """
   def create_user_from_identity(attrs \\ %{}) do
+    attrs = attrs
+            |> Helpers.key_to_atom()
+            |> Map.put(:confirmed_at, NaiveDateTime.utc_now())
+
     %User{}
     |> User.changeset_from_identity(attrs)
     |> Repo.insert()

@@ -1,0 +1,5 @@
+<%= if unconfirmed_user?(@conn) do %>
+  <p class="alert alert-warning" role="alert">
+    Please verify your account. We just sent you an email confirmation.
+  </p>
+<% end %>

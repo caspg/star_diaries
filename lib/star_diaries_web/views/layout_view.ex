@@ -1,6 +1,10 @@
 defmodule StarDiariesWeb.LayoutView do
   use StarDiariesWeb, :view
 
+  def unconfirmed_user?(%{assigns: assigns} = _conn) do
+    assigns[:user_signed_in?] && !assigns[:user_confirmed?]
+  end
+
   def show_flash_message(conn, key) do
     conn
     |> get_flash(key)

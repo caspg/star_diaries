@@ -31,11 +31,17 @@ defmodule StarDiariesWeb.Plugs.SetCurrentUser do
     conn
     |> assign(:current_user, user)
     |> assign(:user_signed_in?, true)
+    |> assign(:user_confirmed?, user_confirmed?(user))
   end
 
   defp assign_unlogged_user(conn) do
     conn
     |> assign(:current_user, nil)
     |> assign(:user_signed_in?, false)
+    |> assign(:user_confirmed?, false)
+  end
+
+  defp user_confirmed?(user) do
+    user.confirmed_at != nil
   end
 end

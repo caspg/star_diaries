@@ -23,14 +23,14 @@ defmodule StarDiaries.Accounts.User do
   @doc false
   def changeset_from_identity(user, attrs) do
     user
-    |> cast(attrs, [:name, :email])
-    |> validate_required([:name, :email])
+    |> cast(attrs, [:name, :email, :confirmed_at])
+    |> validate_required([:name, :email, :confirmed_at])
     |> unique_constraint(:email)
   end
 
   def create_changeset(user, attrs) do
     user
-    |> cast(attrs, [:email, :password, :password_confirmation, :confirmation_token])
+    |> cast(attrs, [:email, :password, :password_confirmation, :confirmation_token, :confirmed_at])
     |> validate_required([:email, :password, :password_confirmation, :confirmation_token])
     |> validate_format(:email, ~r/@/)
     |> validate_length(:password, min: 8)

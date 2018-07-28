@@ -8,6 +8,7 @@ defmodule StarDiariesWeb.Plugs.SetCurrentUserTest do
 
     assert conn.assigns[:current_user] == nil
     assert conn.assigns[:user_signed_in?] == false
+    assert conn.assigns[:user_confirmed?] == false
   end
 
   test "nil values are assigned when user is not found" do
@@ -15,19 +16,22 @@ defmodule StarDiariesWeb.Plugs.SetCurrentUserTest do
 
     assert conn.assigns[:current_user] == nil
     assert conn.assigns[:user_signed_in?] == false
+    assert conn.assigns[:user_confirmed?] == false
   end
 
   test "current_user is assigned" do
     {:ok, user} = Accounts.create_user(%{
       email: "email@email.com",
       name: "name",
-      password: "password",
-      password_confirmation: "password"
+      password: "Password1",
+      password_confirmation: "Password1",
+      confirmed_at: NaiveDateTime.utc_now()
     })
     conn = run_plug(user.id)
 
     assert conn.assigns[:current_user] == user
     assert conn.assigns[:user_signed_in?] == true
+    assert conn.assigns[:user_confirmed?] == true
   end
 
   defp run_plug(current_user_id) do
