@@ -9,8 +9,6 @@ defmodule StarDiaries.Accounts.Users do
   alias StarDiaries.Helpers
   alias StarDiaries.Accounts.Users.UseCases
 
-  defdelegate confirm(token), to: UseCases.Confirm, as: :call
-
   @doc """
   Returns the list of users.
 

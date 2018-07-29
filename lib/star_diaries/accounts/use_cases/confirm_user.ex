@@ -1,4 +1,4 @@
-defmodule StarDiaries.Accounts.Users.UseCases.Confirm do
+defmodule StarDiaries.Accounts.UseCases.ConfirmUser do
   require Logger
 
   alias StarDiaries.Accounts.Users
