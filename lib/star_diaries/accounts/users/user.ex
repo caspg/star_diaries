@@ -20,6 +20,8 @@ defmodule StarDiaries.Accounts.User do
     timestamps()
   end
 
+  @optional
+
   @doc false
   def changeset_from_identity(user, attrs) do
     user
@@ -42,10 +44,12 @@ defmodule StarDiaries.Accounts.User do
     |> unique_constraint(:email)
   end
 
-  def update_confirmed_at_changset(user, attrs) do
+  @doc """
+  Update changeset for users created with signup form
+  """
+  def update_changeset(user, attrs) do
     user
-    |> cast(attrs, [:confirmed_at, :confirmation_token])
-    |> validate_required([:confirmed_at])
+    |> cast(attrs, [:confirmed_at, :confirmation_token, :confirmation_sent_at])
   end
 
   defp hash_password(changeset) do

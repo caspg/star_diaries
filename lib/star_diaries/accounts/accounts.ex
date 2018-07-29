@@ -10,9 +10,13 @@ defmodule StarDiaries.Accounts do
   alias StarDiaries.Accounts.Users
   alias StarDiaries.Accounts.UsersFromAuth
   alias StarDiaries.Accounts.Authentication
+  alias StarDiaries.Accounts.UseCases
 
   defdelegate user_confirmed?(user), to: Users, as: :confirmed?
   defdelegate confirm_user(token), to: Users, as: :confirm
+  defdelegate update_user(user, attrs), to: Users, as: :update
+
+  defdelegate send_confirmation_email(user, url), to: UseCases.SendConfirmationEmail, as: :call
 
   def get_user(id), do: Users.get_user(id)
 

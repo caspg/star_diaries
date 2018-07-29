@@ -92,6 +92,12 @@ defmodule StarDiaries.Accounts.Users do
     Repo.delete(user)
   end
 
+  def update(%User{} = user, attrs) do
+    user
+    |> User.update_changeset(attrs)
+    |> Repo.update()
+  end
+
   @doc """
   Confirms a User.
 
@@ -111,8 +117,7 @@ defmodule StarDiaries.Accounts.Users do
     }
 
     user
-    |> User.update_confirmed_at_changset(attrs)
-    |> Repo.update()
+    |> Users.update(attrs)
   end
 
   def confirmed?(user) do
